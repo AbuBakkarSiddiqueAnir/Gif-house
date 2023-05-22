@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+import {fetchGif, gifHouse} from '../gifstore'
+
+fetchGif()
+</script>
+
+<div class='w-7xl mx-auto flex flex-wrap'>
+    {#each $gifHouse as gif}
+        <div>
+            <img src={gif} alt="">
+        </div>
+    {/each}
+</div>

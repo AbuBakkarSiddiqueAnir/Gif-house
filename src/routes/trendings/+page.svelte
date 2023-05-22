@@ -1,0 +1,1 @@
+<h1>trendings page</h1>
