@@ -1,15 +1,49 @@
 <script>
-    let isInputFocused = false;
 
-    function handleFocus() {
+  import { onMount } from 'svelte';
+  import { fetchGif } from '../utils/request';
+  import { gifHouse } from '../gifstore';
+    let isInputFocused = false;
+    const handleFocus = () => {
       isInputFocused = true;
       document.querySelector('.header')?.classList.add('input-focused');
     }
 
-    function handleBlur() {
+    const handleBlur = () => {
       isInputFocused = false;
       document.querySelector('.header')?.classList.remove('input-focused');
     }
+
+    export let value = '';
+
+    let timerId;
+
+    function debounce(func) {
+      return function (...args) {
+        if (timerId) {
+          clearTimeout(timerId);
+        }
+
+        timerId = setTimeout(() => {
+          func(...args);
+          timerId = null;
+        }, 500);
+      };
+    }
+
+     const handleInputChange = async (event) => {
+      if(event.target.value.length > 2){
+        const results = fetchGif(event.target.value)
+        const gifs = results.data?.map((gif) => gif.images['480w_still'].url);
+	    gifHouse.set(gifs);
+      }
+
+    }
+
+    onMount(() => {
+      const inputField = document.getElementById('myInputField');
+      inputField.addEventListener('input', debounce(handleInputChange));
+    });
   </script>
 
   <style>
@@ -63,6 +97,8 @@
     <div class="input-container">
       <input
         class="input-field"
+        bind:value={value}
+        id="myInputField"
         type="text"
         placeholder="Type here..."
         on:focusin={handleFocus}
