@@ -1,13 +1,11 @@
 <script>
+  import Navbar from "../components/Navbar.svelte";
+
 
 </script>
 
-<div class="app w-full">
-	<div class='w-full flex gap-2'>
-		<a href="/">home</a>
-		<a href="/favorites">favorites</a>
-		<a href="/trendings">trendings</a>
-	</div>
+<div class="w-full bg-gray-800 min-h-screen">
+	<Navbar/>
 	<main class='w-full'>
 		<slot />
 	</main>
@@ -15,5 +13,7 @@
 </div>
 
 <style>
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 </style>
