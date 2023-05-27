@@ -5,10 +5,10 @@ import {
     gifHouse
 } from '../gifstore'
 import {
-    fetchGif
+    searchGif
 } from '../utils/request';
 (async () => {
-    const results = await fetchGif('cat')
+    const results = await searchGif('cat')
     const gifs = results.data.map((gif: object) => gif.images['original'].webp);
     gifHouse.set(gifs);
 })()
@@ -16,5 +16,5 @@ import {
 
 <div class='w-7xl mx-auto flex flex-wrap'>
     <Header/>
-        <GifGrid gifs={$gifHouse}/>
-            </div>
+    <GifGrid gifs={$gifHouse}/>
+ </div>
