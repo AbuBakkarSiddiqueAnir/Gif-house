@@ -1,34 +1,28 @@
-<script>
-    export let gif;
-    let isActive = false;
+<script lang="ts">
+  import { fade } from 'svelte/transition';
+  import type { Gif } from '../types/types';
+  import { onMount } from 'svelte';
 
-function toggleHeart() {
-  isActive = !isActive;
-}
+  export let gif: Gif;
+  export let i: number;
+  let favorite = true;
+  let show = false;
+
+  onMount(() => {
+    show = true;
+  });
 </script>
 
-<div class='max-w-sm'>
-    <div class="rounded-lg group relative masonry-item  max-w-[300px] overflow-hidden">
-        <img src={gif} alt='' class="w-full h-auto" />
-        <div class='absolute top-[30%] hidden group-hover:block  right-[35%]'>
-            <button class={`heart ${isActive ? 'is-active':''}`} on:click={toggleHeart}></button>
-        </div>
-      </div>
+<div class=" relative overflow-hidden rounded-lg group" transition:fade={{delay:i*100}}>
+  <button class="absolute top-2 right-2 bg-red-600 font-bold text-white px-4 py-2 rounded-full shadow-lg transform translate-x-[150%] transition-transform duration-300 ease group-hover:translate-x-[0]">
+    {#if favorite}
+    Added
+{:else}
+    Add
+{/if} to favorites
+  </button>
+  <div class=" absolute bottom-0 text-white w-full px-4 py-2 bg-gradient-to-t from-transparent to-black group-hover:translate-x-[0%]  bg-opacity-50 text-shadow-md transform translate-x-[-150%] transition-transform duration-300 ease">
+      {gif.title}
+  </div>
+  <img src={gif.gif_url} alt="card" class="w-full h-full object-cover aspect-w-1 aspect-h-1.5 rounded-lg" />
 </div>
-
-<style>
-    .heart {
-      width: 100px;
-      height: 100px;
-      background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
-      background-position: 0 0;
-      cursor: pointer;
-      transition: background-position 1s steps(28);
-      transition-duration: 0s;
-    }
-
-    .heart.is-active {
-      transition-duration: 1s;
-      background-position: -2800px 0;
-    }
-  </style>

@@ -1,7 +1,8 @@
 <script lang="ts">
+	import type { GifObject } from './../types/interface';
 
-  import { fetchGif } from '../utils/request';
-  import { gifHouse } from '../gifstore';
+  import { searchGif } from '../utils/request';
+  import { GifHouseStore } from '../gifstore';
     let isInputFocused = false;
     const handleFocus = () => {
       isInputFocused = true;
@@ -32,11 +33,21 @@
 
      const handleInputChange = async (event: { target: { value: string }; }) => {
       if(event.target.value.length > 2){
-        const results = await fetchGif(event.target.value)
-        const gifs = results.data?.map((gif) => gif.images['original'].webp);
-	      gifHouse.set(gifs);
+        gifSearchHandler(event.target.value)
       }
+    }
 
+    const gifSearchHandler = async (searchTerm:string) => {
+      const gifs = await searchGif(searchTerm);
+       const gifsToStore = gifs.data.map((gif : GifObject) => {
+        console.log(gif)
+            return {
+                id: gif.id,
+                gif_url: gif.images['original'].webp,
+                title: gif.title
+            }
+       })
+       GifHouseStore.set(gifsToStore);
     }
 
   </script>
@@ -45,8 +56,6 @@
     <h1 class="text-8xl logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
         Gif House
       </h1>
-
-
     <div class="input-container">
       <input
         class="input-field"
