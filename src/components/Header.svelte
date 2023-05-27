@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { GifObject } from './../types/interface';
-
   import { searchGif } from '../utils/request';
   import { GifHouseStore } from '../gifstore';
+
     let isInputFocused = false;
+
     const handleFocus = () => {
       isInputFocused = true;
       document.querySelector('.header')?.classList.add('input-focused');
@@ -31,7 +32,7 @@
       };
     }
 
-     const handleInputChange = async (event: { target: { value: string }; }) => {
+     const handleInputChange = async (event: { target: { value: string } }) => {
       if(event.target.value.length > 2){
         gifSearchHandler(event.target.value)
       }
@@ -40,7 +41,6 @@
     const gifSearchHandler = async (searchTerm:string) => {
       const gifs = await searchGif(searchTerm);
        const gifsToStore = gifs.data.map((gif : GifObject) => {
-        console.log(gif)
             return {
                 id: gif.id,
                 gif_url: gif.images['original'].webp,

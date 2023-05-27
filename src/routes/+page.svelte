@@ -6,15 +6,18 @@ import {
     GifHouseStore
 } from '../gifstore';
   import Typer from '../components/Typer.svelte';
+  import Head from '../components/Head.svelte';
 
 </script>
 
 <div class='w-7xl mx-auto flex flex-wrap'>
-    <Header/>
+    <!-- <Header/>
     {#if $GifHouseStore.length > 1}
     <GifGrid gifs={$GifHouseStore}/>
 {:else}
     <Typer/>
-{/if}
+{/if} -->
+
+<Head/>
 
  </div>

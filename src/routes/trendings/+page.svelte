@@ -3,7 +3,7 @@
 
   import { trendingGifs } from "../../utils/request";
   import { TrendingGifsStore } from "../../gifstore";
-  import Card from "../../components/Card.svelte";
+
 
 
 </script>
@@ -18,7 +18,7 @@
     <div class='w-full'>
         <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto'>
             {#each $TrendingGifsStore as gif, i}
-            <Card gif={gif} i={i}/>
+            <!-- <Card gif={gif} i={i}/> -->
           {/each}
         </div>
 
