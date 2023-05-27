@@ -1,7 +1,11 @@
 <script lang="ts">
+	import { flip } from 'svelte/animate';
 	import type { GifObject } from './../types/interface';
   import { searchGif } from '../utils/request';
   import { GifHouseStore } from '../gifstore';
+  import { crossfade } from './crossFade';
+  export let loading:boolean;
+  let searchTerm = ''
 
     let isInputFocused = false;
 
@@ -15,32 +19,12 @@
       document.querySelector('.header')?.classList.remove('input-focused');
     }
 
-    export let value = '';
 
-    let timerId:any;
-
-    function debounce(func:Function) {
-      return function (...args:any[]) {
-        if (timerId) {
-          clearTimeout(timerId);
-        }
-
-        timerId = setTimeout(() => {
-          func(...args);
-          timerId = null;
-        }, 500);
-      };
-    }
-
-     const handleInputChange = async (event: { target: { value: string } }) => {
-      if(event.target.value.length > 2){
-        gifSearchHandler(event.target.value)
-      }
-    }
-
-    const gifSearchHandler = async (searchTerm:string) => {
+    const gifSearchHandler = async (event:KeyboardEvent) => {
+      if(event.keyCode !== 13) return
+      loading = true;
       const gifs = await searchGif(searchTerm);
-       const gifsToStore = gifs.data.map((gif : GifObject) => {
+      const gifsToStore = gifs.data.map((gif : GifObject) => {
             return {
                 id: gif.id,
                 gif_url: gif.images['original'].webp,
@@ -48,41 +32,40 @@
             }
        })
        GifHouseStore.set(gifsToStore);
+       loading = false;
     }
-
+    const [send, receive] = crossfade
   </script>
 
-  <div class="w-full flex justify-center {`header ${isInputFocused ? 'input-focused h-[10rem]' : 'h-[22rem]'}`}">
-    <h1 class="text-8xl logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        Gif House
+
+  <div class="w-full flex justify-between flex-col mb-5 transition-all duration-300  {`header ${isInputFocused ? 'input-focused ' : ''}`}">
+    {#if isInputFocused}
+    <h1  in:receive='{{key:'h1'}}' out:send='{{key:'h1'}}'  class="text-8xl whitespace-nowrap  logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      Gif House
+    </h1>
+
+    {/if}
+
+    <div class="flex justify-between items-center w-full gap-6 mt-5">
+      {#if !isInputFocused}
+      <h1  in:receive='{{key:'h1'}}' out:send='{{key:'h1'}}'    class="text-[3.6rem] whitespace-nowrap logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        GIF HOUSE
       </h1>
-    <div class="input-container">
+      {/if}
       <input
-        class="input-field"
-        bind:value={value}
+        class='w-full p-[0.7rem] transition-all border-1 border-solid outline-none  border-gray-500 duration-300 ease-in'
         type="text"
         placeholder="Type here..."
-        on:change={debounce(handleInputChange)}
+        bind:value={searchTerm}
+        on:keyup={ (e)=> gifSearchHandler (e)}
         on:focusin={handleFocus}
         on:focusout={handleBlur}
       />
     </div>
   </div>
   <style>
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      transition: all 0.3s ease;
-      transform: translateY(0);
-    }
 
-    .input-container {
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
+
 
     .input-field {
       width: 500px;
@@ -98,14 +81,7 @@
       box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
     }
 
-    .logo {
-      transition: all 0.3s ease;
-    }
 
-    .input-focused .logo {
-      font-size: 60px;
-      transform: translateY(-20px);
-    }
 
 
   </style>

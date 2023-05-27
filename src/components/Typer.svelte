@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-    let phrase:string = 'Search the Gif you would like to see here...'
+    let phrase:string = '🔍 Search the Gif you would like to see here, you can add your favorite gif to your personalized list..!!😍'
     let typeChars:string = '';
     let index:number = 0;
     let typeWritter:number;
@@ -24,7 +24,7 @@
 </script>
 
 <section class="w-full">
-    <div class="max-w-lg mx-auto">
-        <p class="italic text-red-900 text-4xl tracking-wider leading-9">{typeChars}</p>
+    <div class="max-w-4xl">
+        <p class="italic text-gray-400  text-3xl font-normal tracking-wider leading-9">{typeChars}</p>
     </div>
 </section>

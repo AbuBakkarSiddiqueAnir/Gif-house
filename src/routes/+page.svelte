@@ -6,18 +6,17 @@ import {
     GifHouseStore
 } from '../gifstore';
   import Typer from '../components/Typer.svelte';
-  import Head from '../components/Head.svelte';
+
+  $: loading = false;
 
 </script>
 
-<div class='w-7xl mx-auto flex flex-wrap'>
-    <!-- <Header/>
+<div class='w-7xl mx-auto mt-5 flex flex-wrap'>
+    <Header loading={loading}/>
     {#if $GifHouseStore.length > 1}
-    <GifGrid gifs={$GifHouseStore}/>
-{:else}
-    <Typer/>
-{/if} -->
-
-<Head/>
+        <GifGrid loading={loading} gifs={$GifHouseStore}/>
+    {:else}
+     <Typer/>
+    {/if}
 
  </div>
