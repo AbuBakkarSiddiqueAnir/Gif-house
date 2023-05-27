@@ -1,6 +1,5 @@
-<script>
+<script lang="ts">
 
-  import { onMount } from 'svelte';
   import { fetchGif } from '../utils/request';
   import { gifHouse } from '../gifstore';
     let isInputFocused = false;
@@ -16,10 +15,10 @@
 
     export let value = '';
 
-    let timerId;
+    let timerId:any;
 
-    function debounce(func) {
-      return function (...args) {
+    function debounce(func:Function) {
+      return function (...args:any[]) {
         if (timerId) {
           clearTimeout(timerId);
         }
@@ -31,21 +30,35 @@
       };
     }
 
-     const handleInputChange = async (event) => {
+     const handleInputChange = async (event: { target: { value: string }; }) => {
       if(event.target.value.length > 2){
-        const results = fetchGif(event.target.value)
-        const gifs = results.data?.map((gif) => gif.images['480w_still'].url);
-	    gifHouse.set(gifs);
+        const results = await fetchGif(event.target.value)
+        const gifs = results.data?.map((gif) => gif.images['original'].webp);
+	      gifHouse.set(gifs);
       }
 
     }
 
-    onMount(() => {
-      const inputField = document.getElementById('myInputField');
-      inputField.addEventListener('input', debounce(handleInputChange));
-    });
   </script>
 
+  <div class="w-full flex justify-center {`header ${isInputFocused ? 'input-focused h-[10rem]' : 'h-[22rem]'}`}">
+    <h1 class="text-8xl logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        Gif House
+      </h1>
+
+
+    <div class="input-container">
+      <input
+        class="input-field"
+        bind:value={value}
+        type="text"
+        placeholder="Type here..."
+        on:change={debounce(handleInputChange)}
+        on:focusin={handleFocus}
+        on:focusout={handleBlur}
+      />
+    </div>
+  </div>
   <style>
     .header {
       display: flex;
@@ -87,22 +100,3 @@
 
 
   </style>
-
-  <div class="w-full flex justify-center {`header ${isInputFocused ? 'input-focused h-[10rem]' : 'h-[22rem]'}`}">
-    <h1 class="text-8xl logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        Gif House
-      </h1>
-
-
-    <div class="input-container">
-      <input
-        class="input-field"
-        bind:value={value}
-        id="myInputField"
-        type="text"
-        placeholder="Type here..."
-        on:focusin={handleFocus}
-        on:focusout={handleBlur}
-      />
-    </div>
-  </div>

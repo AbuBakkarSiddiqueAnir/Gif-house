@@ -1,14 +1,17 @@
 <script lang='ts'>
-    export let gifs;
+	import GifCard from './GifCard.svelte';
+    export let gifs:[];
 </script>
 
-<div class="grid mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
     {#each gifs as gif}
-      <div class="rounded-lg max-w-[300px] overflow-hidden">
-        <img src={gif} alt='' class="w-full h-auto" />
-      </div>
+      <GifCard gif={gif}/>
     {/each}
   </div>
 
 
-
+<style>
+  .masonry-item {
+    break-inside: avoid;
+  }
+</style>

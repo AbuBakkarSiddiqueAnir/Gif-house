@@ -1,15 +1,14 @@
-<script>
+<script lang="ts">
+  import Footer from "../components/Footer.svelte";
   import Navbar from "../components/Navbar.svelte";
-
-
 </script>
 
 <div class="w-full bg-gray-800 min-h-screen">
 	<Navbar/>
-	<main class='w-full'>
+	<main class=' max-w-7xl mx-auto'>
 		<slot />
 	</main>
-
+	<Footer/>
 </div>
 
 <style>
