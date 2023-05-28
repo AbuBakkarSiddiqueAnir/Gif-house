@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { SearchPageGifOffset } from "./../gifstore";
   import { onMount } from "svelte";
+  import { SearchPageGifOffset } from "./../gifstore";
   import GifGrid from "../components/GifGrid.svelte";
   import Header from "../components/Header.svelte";
   import { GifHouseStore } from "../gifstore";
@@ -11,7 +11,7 @@
   $: loading = false;
 
   const paginateScroll = (count: number) => {
-    if (searchTerm?.length <script 2) return;
+    if (searchTerm?.length < 2) return;
     count += 30;
     SearchPageGifOffset.set(count);
     fetchSearchMoreGif(searchTerm, count);
