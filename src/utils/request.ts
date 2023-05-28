@@ -1,7 +1,8 @@
 import { GifHouseStore, TrendingGifsStore } from "../gifstore";
 import type { GifObject } from "../types/interface";
 import type { Gif } from "../types/types";
-import { PUBLIC_GIPHY_APIKEY } from "$env/static/public";
+import { PUBLIC_GIPHY_APIKEY } from "./env";
+// import { PUBLIC_GIPHY_APIKEY } from "$env/static/public";
 
 export const searchGif = async (searchTerm: string) => {
   const res = await fetch(
