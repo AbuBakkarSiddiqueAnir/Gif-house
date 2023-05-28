@@ -8,7 +8,7 @@
   import { TrendingGifsStore } from "../gifstore";
   onMount(async () => {
     const trendings = await trendingGifs();
-    const gifsToStore: Gif[] = trendings.data.map((gif: GifObject) => {
+    const gifsToStore = trendings.data.map((gif: GifObject) => {
       return {
         id: gif.id,
         gif_url: gif.images["original"].webp,

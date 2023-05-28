@@ -1,14 +1,16 @@
 <script lang='ts'>
+	import InfiniteScroll from './InfiniteScroll.svelte';
 	import GifCard from './GifCard.svelte';
   import Skeleton from './Skeleton.svelte';
+
   export let gifs : any;
   export let loading:boolean;
+  export let count:number;
+  export let fetchSearchGif:Function;
 </script>
 
 
-
-
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto">
+<div id="gif-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto overflow-y-scroll max-h-[1000px]">
   {#if loading}
      {#each new Array(20) as skeleton}
       <Skeleton/>
@@ -16,6 +18,28 @@
   {:else}
     {#each gifs as gif, i}
       <GifCard gif={gif} i={i}/>
+
     {/each}
+
+    <InfiniteScroll
+        hasMore={true}
+        threshold={100}
+        on:loadMore={() => fetchSearchGif(count)}
+     />
   {/if}
 </div>
+
+
+<style>
+
+/* Hide the scrollbar for webkit-based browsers (e.g., Chrome, Safari) */
+#gif-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Optional: Hide the scrollbar for Firefox */
+#gif-container {
+  scrollbar-width: none;
+}
+</style>

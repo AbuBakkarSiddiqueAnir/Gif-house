@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { flip } from 'svelte/animate';
 	import type { GifObject } from './../types/interface';
   import { searchGif } from '../utils/request';
   import { GifHouseStore } from '../gifstore';
@@ -43,20 +42,21 @@
 
 
   <div class="w-full flex justify-between flex-col mb-5 transition-all duration-300  {`header ${isInputFocused ? 'input-focused ' : ''}`}">
-    {#if isInputFocused}
+    <!-- {#if isInputFocused} -->
     <h1  in:receive='{{key:'h1'}}' out:send='{{key:'h1'}}'  class="text-8xl whitespace-nowrap  logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
       Gif House
     </h1>
 
-    {/if}
+    <!-- {/if} -->
 
     <div class="flex justify-between items-center w-full gap-6 mt-5">
-      {#if !isInputFocused}
+      <!-- {#if !isInputFocused}
       <h1  in:receive='{{key:'h1'}}' out:send='{{key:'h1'}}'    class="text-[3.6rem] whitespace-nowrap logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
         GIF HOUSE
-      </h1>
-      {/if}
-      <div class="relative w-full">
+      </h1> -->
+<!--
+      {/if} -->
+      <div class="relative w-full" in:receive='{{key:'input'}}' out:send='{{key:'input'}}'   >
         <input
         class='w-full p-[0.7rem] transition-all border-1 border-solid outline-none  border-gray-500 duration-300 ease-in'
         type="text"

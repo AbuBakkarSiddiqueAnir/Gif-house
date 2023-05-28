@@ -1,6 +1,16 @@
 import { writable } from 'svelte/store';
-export const GifHouseStore = writable([]);
-export const TrendingGifsStore = writable([]);
+import type { Gif } from './types/types';
+import { browser } from '$app/environment';
+
+
+export let FavoritesStore:any;
+
+if (browser) {
+    FavoritesStore = writable<Gif[]>(localStorage.getItem('favorites_gif') ? JSON.parse(localStorage.getItem('favorites_gif')) : [] )
+}
+export const GifHouseStore = writable<Gif[]>([]);
+export const TrendingGifsStore = writable<Gif[]>([]);
+export const SearchPageGifOffset = writable<number>(0)
 
 
 

@@ -1,3 +1,3 @@
 import { crossfade as svelteCrossfade } from 'svelte/transition';
 
-export const crossfade = svelteCrossfade({ duration: 300 });
+export const crossfade = svelteCrossfade({ duration: 700 });
