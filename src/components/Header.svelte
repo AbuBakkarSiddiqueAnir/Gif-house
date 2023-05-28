@@ -19,9 +19,13 @@
       document.querySelector('.header')?.classList.remove('input-focused');
     }
 
-
-    const gifSearchHandler = async (event:KeyboardEvent) => {
+    const enterKeyHandler = (event:KeyboardEvent) => {
       if(event.keyCode !== 13) return
+      gifSearchHandler()
+    }
+
+    const gifSearchHandler = async () => {
+
       loading = true;
       const gifs = await searchGif(searchTerm);
       const gifsToStore = gifs.data.map((gif : GifObject) => {
@@ -52,15 +56,22 @@
         GIF HOUSE
       </h1>
       {/if}
-      <input
+      <div class="relative w-full">
+        <input
         class='w-full p-[0.7rem] transition-all border-1 border-solid outline-none  border-gray-500 duration-300 ease-in'
         type="text"
         placeholder="Type here..."
         bind:value={searchTerm}
-        on:keyup={ (e)=> gifSearchHandler (e)}
+        on:keyup={enterKeyHandler}
         on:focusin={handleFocus}
         on:focusout={handleBlur}
       />
+      <button on:click={gifSearchHandler} class="search absolute right-1 top-1">
+        <img class="w-[40px]" src="/search.svg" alt="">
+      </button>
+
+      </div>
+
     </div>
   </div>
   <style>
