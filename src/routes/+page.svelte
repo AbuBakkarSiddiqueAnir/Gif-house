@@ -21,7 +21,7 @@ import {
 
 </script>
 
-<div class='w-7xl mx-auto mt-5 flex flex-wrap'>
+<div class='w-7xl mx-auto mt-0 flex flex-wrap'>
     <Header bind:loading={loading} bind:searchTerm={searchTerm}/>
     {#if $GifHouseStore?.length > 1}
         <GifGrid page='home' count={$SearchPageGifOffset} fetchSearchGif={paginateScroll} bind:loading={loading} gifs={$GifHouseStore}/>

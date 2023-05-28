@@ -7,6 +7,7 @@
   import { TrendingGifsStore } from "../gifstore";
 
   onMount(async () => {
+
     const trendings = await trendingGifs();
     const gifsToStore = trendings.data.map((gif: GifObject) => {
       return {
@@ -17,13 +18,17 @@
     });
     TrendingGifsStore.set(gifsToStore);
   });
+
 </script>
 
 <div class="w-full bg-gray-800 min-h-screen px-6">
-  <Navbar />
-  <main class=" max-w-7xl mx-auto">
-    <slot />
-  </main>
+  <div class="max-w-[1920px] mx-auto">
+    <Navbar />
+    <main class=" max-w-7xl mx-auto">
+      <slot />
+    </main>
+  </div>
+
 </div>
 
 <style>

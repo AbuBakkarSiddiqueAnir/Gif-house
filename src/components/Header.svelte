@@ -6,16 +6,14 @@
   export let loading:boolean;
   export let searchTerm:string;
 
-    let isInputFocused = false;
+    let isInputFocused = true;
 
     const handleFocus = () => {
       isInputFocused = true;
-      document.querySelector('.header')?.classList.add('input-focused');
     }
 
     const handleBlur = () => {
       isInputFocused = false;
-      document.querySelector('.header')?.classList.remove('input-focused');
     }
 
     const enterKeyHandler = (event:KeyboardEvent) => {
@@ -36,53 +34,35 @@
        })
        GifHouseStore.set(gifsToStore);
        loading = false;
+       isInputFocused = false;
     }
     const [send, receive] = crossfade
   </script>
 
 
-  <div class="w-full flex justify-between flex-col mb-5 transition-all duration-300  {`header ${isInputFocused ? 'input-focused ' : ''}`}">
+  <div class="w-full flex justify-between flex-col mb-5 transition-all duration-300 sticky top-[3rem] pb-4 z-40 bg-gray-800">
 
-    <h1   class="text-8xl whitespace-nowrap  logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+    <h1   class={` transition-all duration-700 whitespace-nowrap  logo font-bold ${!isInputFocused ? 'mt-[0px] text-5xl':'md:mt-[150px] mt-[100px] text-6xl md:text-8xl'}`} style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
       Gif House
     </h1>
 
     <div class="flex justify-between items-center w-full gap-6 mt-5">
-      <div class="relative w-full" in:receive='{{key:'input'}}' out:send='{{key:'input'}}'   >
+      <div class={`relative w-full bg-gradient-to-r from-[#6EE7B7] via-[#3B82F6] to-[#9333EA] ${!isInputFocused ? "p-[2px]":"p-[3px]"}`}  >
         <input
-        class='w-full p-[0.7rem] transition-all border-1 border-solid outline-none  border-gray-500 duration-300 ease-in'
+        class={`w-full   transition-all border-1 border-solid outline-none bg-gray-800 text-gray-100  border-gray-900 duration-300 ease-in ${!isInputFocused ? ' p-[0.5rem]' :'p-[1rem] '}`}
         type="text"
         placeholder="Type here..."
+        autofocus
         bind:value={searchTerm}
         on:keyup={enterKeyHandler}
         on:focusin={handleFocus}
         on:focusout={handleBlur}
       />
-      <button on:click={gifSearchHandler} class="search absolute right-1 top-1">
-        <img class="w-[40px]" src="/search.svg" alt="">
+      <button on:click={gifSearchHandler} class="search absolute right-1 top-3">
+        <img class={`transition-all duration-300 ${!isInputFocused ? 'w-[25px]':'w-[40px]'}`} src="/search.svg" alt="">
       </button>
       </div>
     </div>
   </div>
   <style>
-
-
-
-    .input-field {
-      width: 500px;
-      padding: 0.5rem;
-      border: 1px solid gray;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-
-    .input-field:focus {
-      width: 800px;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
-    }
-
-
-
-
   </style>

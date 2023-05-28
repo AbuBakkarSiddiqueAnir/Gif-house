@@ -11,7 +11,7 @@
 </script>
 
 
-<div id="gif-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto overflow-y-scroll max-h-[1000px]">
+<div id="gif-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto overflow-y-scroll max-h-[1200px]">
   {#if loading}
      {#each new Array(20) as skeleton}
       <Skeleton/>
