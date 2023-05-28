@@ -58,11 +58,11 @@
 
 <style>
   #gif-container::-webkit-scrollbar {
-    width: 0;
+    width: 2px;
     background: transparent;
   }
 
   #gif-container {
-    scrollbar-width: none;
+    scrollbar-width: 2px;
   }
 </style>
