@@ -41,7 +41,7 @@
   });
 </script>
 
-<div class=" relative overflow-hidden rounded-lg group min-h-[400px]" transition:fade={{delay:i*100}}>
+<div class=" relative overflow-hidden rounded-lg group min-h-[400px]" in:fade={{ delay:i*80 }} out:fade >
   <button on:click={toggleFavorite} class="absolute top-2 right-2 bg-red-600 font-bold text-white px-4 py-2 rounded-full shadow-lg transform translate-x-[150%] transition-transform duration-300 ease group-hover:translate-x-[0]">
     {#if favorite}
     Added

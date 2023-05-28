@@ -11,11 +11,9 @@
           <h1 class="text-5xl whitespace-nowrap  logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
             FAVORITES GIFS
           </h1>
-          <button type="button" class="text-white bg-gradient-to-br from-red-600 to-blue-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-lg px-5 h-10">Refresh Trendings</button>
       </header>
       <div class='w-full'>
-          <GifGrid loading={false} gifs={$FavoritesStore}/>
+          <GifGrid count={0} page='favorite' fetchSearchGif={()=>{}} loading={false} gifs={$FavoritesStore}/>
       </div>
-
   </div>
   </section>

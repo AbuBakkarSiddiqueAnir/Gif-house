@@ -7,7 +7,7 @@
 
 
     const typeChar = () => {
-        if(index < phrase.length) {
+        if(index < phrase?.length) {
             typeChars += phrase[index];
             index++;
         } else {

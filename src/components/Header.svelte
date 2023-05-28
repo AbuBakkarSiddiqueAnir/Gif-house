@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { GifObject } from './../types/interface';
   import { searchGif } from '../utils/request';
-  import { GifHouseStore } from '../gifstore';
+  import { GifHouseStore, SearchPageGifOffset } from '../gifstore';
   import { crossfade } from './crossFade';
   export let loading:boolean;
   export let searchTerm:string;
@@ -27,7 +27,7 @@
     }
 
     const gifSearchHandler = async () => {
-      console.log(loading, searchTerm)
+      SearchPageGifOffset.set(0)
       loading = true;
       const gifs = await searchGif(searchTerm);
       const gifsToStore = gifs.data.map((gif : GifObject) => {

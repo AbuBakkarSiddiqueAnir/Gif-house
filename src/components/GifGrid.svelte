@@ -7,6 +7,7 @@
   export let loading:boolean;
   export let count:number;
   export let fetchSearchGif:Function;
+  export let page:string;
 </script>
 
 
@@ -18,14 +19,17 @@
   {:else}
     {#each gifs as gif, i}
       <GifCard gif={gif} i={i}/>
-
     {/each}
 
+  {#if (page === 'home' || page === 'trending')}
     <InfiniteScroll
         hasMore={true}
         threshold={100}
         on:loadMore={() => fetchSearchGif(count)}
      />
+    {/if}
+
+
   {/if}
 </div>
 

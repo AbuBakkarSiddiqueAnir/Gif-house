@@ -4,8 +4,8 @@ import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 
 export let threshold = 0;
 export let horizontal = false;
-export let elementScroll: HTMLElement | null;
 export let hasMore = true;
+let elementScroll: HTMLElement | null;
 
 const dispatch = createEventDispatcher();
 let isLoadMore = false;
@@ -21,7 +21,6 @@ onMount(() => {
 
 const onScroll = (e: Event) => {
   const element = e.target as HTMLElement;
-  console.log('scrolling');
 
   const offset = horizontal
     ? element.scrollWidth - element.clientWidth - element.scrollLeft

@@ -1,8 +1,14 @@
 <script lang="ts">
 
-  import { trendingGifs } from '../../utils/request';
-  import { TrendingGifsStore } from '../../gifstore';
+  import { fetchTrendingMoreGif, trendingGifs } from '../../utils/request';
+  import { TrendingGifsStore, TrendingPageGifOffset } from '../../gifstore';
   import GifGrid from '../../components/GifGrid.svelte';
+
+  const paginateScroll = (count:number) =>{
+    fetchTrendingMoreGif( count)
+    count += 30
+    TrendingPageGifOffset.set(count)
+  }
 
 </script>
 
@@ -12,10 +18,9 @@
         <h1 class="text-5xl whitespace-nowrap  logo font-bold" style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
           TRENDING GIFS
         </h1>
-        <button type="button" class="text-white bg-gradient-to-br from-red-600 to-blue-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300  font-medium rounded-lg text-lg px-5 h-10">Refresh Trendings</button>
     </header>
     <div class='w-full'>
-        <GifGrid loading={false} gifs={$TrendingGifsStore}/>
+        <GifGrid count={$TrendingPageGifOffset} loading={false}  fetchSearchGif={paginateScroll}  page='trending' gifs={$TrendingGifsStore} />
     </div>
 
 </div>

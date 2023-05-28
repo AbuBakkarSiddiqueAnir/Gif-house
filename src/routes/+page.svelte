@@ -12,10 +12,11 @@ import {
 
   $: searchTerm = '';
 
+
   $: loading = false;
 
   const paginateScroll = (count:number) =>{
-    if(searchTerm.length < 2) return
+    if(searchTerm?.length < 2) return
     count += 30
     SearchPageGifOffset.set(count)
     fetchSearchMoreGif(searchTerm, count)
@@ -26,7 +27,7 @@ import {
 <div class='w-7xl mx-auto mt-5 flex flex-wrap'>
     <Header bind:loading={loading} bind:searchTerm={searchTerm}/>
     {#if $GifHouseStore?.length > 1}
-        <GifGrid count={$SearchPageGifOffset} fetchSearchGif={paginateScroll} bind:loading={loading} gifs={$GifHouseStore}/>
+        <GifGrid page='home' count={$SearchPageGifOffset} fetchSearchGif={paginateScroll} bind:loading={loading} gifs={$GifHouseStore}/>
     {:else}
      <Typer/>
     {/if}
