@@ -6,14 +6,12 @@ GifHouse is a website that allows users to discover gifs from Giphy. It provides
 
 To build, test, and run the GifHouse project locally, follow these steps:
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/AbuBakkarSiddiqueAnir/Gif-house
-   cd gifhouse
-   npm install
-   npm run dev
-   ```
+```bash
+git clone https://github.com/AbuBakkarSiddiqueAnir/Gif-house
+cd gifhouse
+npm install
+npm run dev
+```
 
 ## Features
 
