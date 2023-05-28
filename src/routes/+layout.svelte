@@ -7,7 +7,6 @@
   import { TrendingGifsStore } from "../gifstore";
 
   onMount(async () => {
-
     const trendings = await trendingGifs();
     const gifsToStore = trendings.data.map((gif: GifObject) => {
       return {
@@ -18,7 +17,6 @@
     });
     TrendingGifsStore.set(gifsToStore);
   });
-
 </script>
 
 <div class="w-full bg-gray-800 min-h-screen px-6">
@@ -28,7 +26,6 @@
       <slot />
     </main>
   </div>
-
 </div>
 
 <style>
