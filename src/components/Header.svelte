@@ -1,4 +1,4 @@
-/**
+<!-- /**
  * Component: Header
  *
  * This component represents a search bar for searching GIFs. It includes an input field
@@ -9,7 +9,7 @@
  * Props:
  * - loading: A boolean indicating whether the search is in progress.
  * - searchTerm: The current search term entered by the user.
- */
+ */ -->
 
 
 <script lang="ts">

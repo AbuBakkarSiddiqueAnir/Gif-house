@@ -1,4 +1,4 @@
-/**
+<!-- /**
  * Component: GifCard
  *
  * This component represents a single GIF card. It displays an gif, the GIF title, and
@@ -7,7 +7,7 @@
  * Props:
  * - gif: The GIF object to be rendered.
  * - i: The index of the GIF in the list.
- */
+ */ -->
 
 
 <script lang="ts">

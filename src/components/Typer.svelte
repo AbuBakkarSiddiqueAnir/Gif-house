@@ -1,4 +1,4 @@
-
+<!--
 /**
  * Typewriter Component
  * A Svelte component that displays a typewriter effect for a phrase.
@@ -9,7 +9,7 @@
  * @prop {'number'} typeWritter - The interval ID of the typewriter effect.
  * @method {'function'} typeChar - A helper function that types a character from the phrase.
  * @method {'function'} typing - Starts the typewriter effect by calling `typeChar` repeatedly.
- */
+ */ -->
 
 <script lang="ts">
   import { onMount } from "svelte";

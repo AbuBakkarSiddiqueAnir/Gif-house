@@ -1,9 +1,9 @@
-
+<!--
 /**
  * Skeletonn Component
  * A Svelte component that displays skeleton for gif card while fetching remote gif
  * @component
- */
+ */ -->
 
 
 <div

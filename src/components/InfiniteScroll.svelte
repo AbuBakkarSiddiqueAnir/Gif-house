@@ -1,4 +1,4 @@
-/**
+<!-- /**
  * Component: InfiniteScroll
  * This component enables infinite scrolling behavior by detecting when the user
  * has scrolled near the bottom of a scrollable container. It emits a 'loadMore'
@@ -11,8 +11,7 @@
  *
  * Events:
  * - loadMore: Triggered when the threshold is reached and more content should be loaded.
- * ```
- */
+ */ -->
 
 <script lang="ts">
   import { onMount, onDestroy, createEventDispatcher } from "svelte";

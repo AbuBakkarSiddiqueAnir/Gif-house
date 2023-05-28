@@ -1,5 +1,5 @@
 
-/**
+<!-- /**
  * Component: GifGrid
  *
  * This component displays a container for GIFs. It can render either a loading state
@@ -17,7 +17,7 @@
  * - fetchSearchGif: A function to fetch more GIFs.
  * - page: The current page.
  * - hasMore: A boolean indicating whether there are more GIFs available to load.
- */
+ */ -->
 
 <script lang="ts">
   import InfiniteScroll from "./InfiniteScroll.svelte";
