@@ -1,3 +1,11 @@
+
+/**
+ * Skeletonn Component
+ * A Svelte component that displays skeleton for gif card while fetching remote gif
+ * @component
+ */
+
+
 <div
   role="status"
   class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center"

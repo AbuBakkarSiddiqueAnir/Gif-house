@@ -1,9 +1,31 @@
+
+/**
+ * Component: Gif Container
+ *
+ * This component displays a container for GIFs. It can render either a loading state
+ * with skeleton placeholders or the actual GIF cards. The component supports infinite
+ * scrolling when used on the home or trending pages. The 'gifs' prop contains an array
+ * of GIF objects to be rendered. The 'loading' prop indicates whether the GIFs are being
+ * loaded. The 'count' prop represents the current count of loaded GIFs. The 'fetchSearchGif'
+ * prop is a function to fetch more GIFs. The 'page' prop specifies the current page. The
+ * 'hasMore' prop indicates whether there are more GIFs available to load.
+ *
+ * Props:
+ * - gifs: An array of GIF objects to be rendered.
+ * - loading: A boolean indicating whether the GIFs are being loaded.
+ * - count: The current count of loaded GIFs.
+ * - fetchSearchGif: A function to fetch more GIFs.
+ * - page: The current page.
+ * - hasMore: A boolean indicating whether there are more GIFs available to load.
+ */
+
 <script lang="ts">
   import InfiniteScroll from "./InfiniteScroll.svelte";
   import GifCard from "./GifCard.svelte";
   import Skeleton from "./Skeleton.svelte";
+  import type { Gif } from "../types/types";
 
-  export let gifs: any;
+  export let gifs: Gif;
   export let loading: boolean;
   export let count: number;
   export let fetchSearchGif: Function;

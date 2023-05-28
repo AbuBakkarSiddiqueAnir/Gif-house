@@ -1,3 +1,17 @@
+/**
+ * Component: Header
+ *
+ * This component represents a search bar for searching GIFs. It includes an input field
+ * where the user can enter search text and a search button to initiate the search. The
+ * component communicates with the GIF API to fetch search results and stores the fetched
+ * GIF data in the GifHouseStore. The loading state is controlled by the 'loading' prop.
+ *
+ * Props:
+ * - loading: A boolean indicating whether the search is in progress.
+ * - searchTerm: The current search term entered by the user.
+ */
+
+
 <script lang="ts">
   import type { GifObject } from "./../types/interface";
   import { searchGif } from "../utils/request";

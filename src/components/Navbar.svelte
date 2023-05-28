@@ -1,3 +1,12 @@
+
+/**
+ * Component: Navbar
+ *
+ * This component represents the navigation bar at the top of the page.
+ * It includes links to the home, favorites, and trendings pages.
+ * The number of favorites is passed as the prop 'noOfFavorites'.
+ */
+
 <script lang="ts">
   import { scale } from "svelte/transition";
   import { FavoritesStore } from "../gifstore";

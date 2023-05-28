@@ -1,3 +1,15 @@
+/**
+ * Component: GifCard
+ *
+ * This component represents a single GIF card. It displays an gif, the GIF title, and
+ * an option to add or remove the GIF from favorites. The 'gif' prop contains the GIF object
+ * to be rendered.
+ * Props:
+ * - gif: The GIF object to be rendered.
+ * - i: The index of the GIF in the list.
+ */
+
+
 <script lang="ts">
   import { fade } from "svelte/transition";
   import type { Gif } from "../types/types";
