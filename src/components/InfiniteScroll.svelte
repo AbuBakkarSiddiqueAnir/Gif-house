@@ -1,51 +1,50 @@
-<script>
-    import { onMount, onDestroy, createEventDispatcher } from "svelte";
+<script lang="ts">
 
-    export let threshold = 0;
-    export let horizontal = false;
-    export let elementScroll;
-    export let hasMore = true;
+import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
-    let isLoadMore = false;
-    let component;
+export let threshold = 0;
+export let horizontal = false;
+export let elementScroll: HTMLElement | null;
+export let hasMore = true;
 
-    $: {
+const dispatch = createEventDispatcher();
+let isLoadMore = false;
+let component: HTMLElement | null;
 
-      if (component || elementScroll) {
-        const element = elementScroll ? elementScroll : component.parentNode;
-        console.log(element)
-        element.addEventListener("scroll", onScroll);
-        element.addEventListener("resize", onScroll);
-      }
+onMount(() => {
+  if (component || elementScroll) {
+    const element = elementScroll || component?.parentNode as HTMLElement;
+    element.addEventListener('scroll', onScroll);
+    element.addEventListener('resize', onScroll);
+  }
+});
+
+const onScroll = (e: Event) => {
+  const element = e.target as HTMLElement;
+  console.log('scrolling');
+
+  const offset = horizontal
+    ? element.scrollWidth - element.clientWidth - element.scrollLeft
+    : element.scrollHeight - element.clientHeight - element.scrollTop;
+
+  if (offset <= threshold) {
+    if (!isLoadMore && hasMore) {
+      dispatch('loadMore');
     }
+    isLoadMore = true;
+  } else {
+    isLoadMore = false;
+  }
+};
 
-    const onScroll = e => {
-      const element = e.target;
-      console.log('scrolling')
+onDestroy(() => {
+  if (component || elementScroll) {
+    const element = elementScroll || component?.parentNode as HTMLElement;
 
-      const offset = horizontal
-        ? e.target.scrollWidth - e.target.clientWidth - e.target.scrollLeft
-        : e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop;
+    element.removeEventListener('scroll', onScroll);
+    element.removeEventListener('resize', onScroll);
+  }
+});
 
-      if (offset <= threshold) {
-        if (!isLoadMore && hasMore) {
-          dispatch("loadMore");
-        }
-        isLoadMore = true;
-      } else {
-        isLoadMore = false;
-      }
-    };
-
-    onDestroy(() => {
-      if (component || elementScroll) {
-        const element = elementScroll ? elementScroll : component.parentNode;
-
-        element.removeEventListener("scroll", null);
-        element.removeEventListener("resize", null);
-      }
-    });
-  </script>
-
+</script>
   <div bind:this={component} style="width:0px" />
