@@ -1,6 +1,6 @@
 
 /**
- * Component: Gif Container
+ * Component: GifGrid
  *
  * This component displays a container for GIFs. It can render either a loading state
  * with skeleton placeholders or the actual GIF cards. The component supports infinite
