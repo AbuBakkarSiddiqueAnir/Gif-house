@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SearchGifLimit } from "./../gifstore.ts";
   import { onMount } from "svelte";
   import { SearchPageGifOffset } from "./../gifstore";
   import GifGrid from "../components/GifGrid.svelte";
@@ -23,6 +24,7 @@
   {#if $GifHouseStore?.length > 1}
     <GifGrid
       page="home"
+      hasMore={$SearchGifLimit > $SearchPageGifOffset}
       count={$SearchPageGifOffset}
       fetchSearchGif={paginateScroll}
       bind:loading

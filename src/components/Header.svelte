@@ -2,7 +2,6 @@
   import type { GifObject } from "./../types/interface";
   import { searchGif } from "../utils/request";
   import { GifHouseStore, SearchPageGifOffset } from "../gifstore";
-  import { crossfade } from "./crossFade";
   export let loading: boolean;
   export let searchTerm: string;
 
@@ -36,7 +35,6 @@
     loading = false;
     isInputFocused = false;
   };
-  const [send, receive] = crossfade;
 </script>
 
 <div

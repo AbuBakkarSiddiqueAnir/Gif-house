@@ -1,4 +1,9 @@
-import { GifHouseStore, TrendingGifsStore } from "../gifstore";
+import {
+  GifHouseStore,
+  SearchGifLimit,
+  TrendingGifLimit,
+  TrendingGifsStore,
+} from "../gifstore";
 import type { GifObject } from "../types/interface";
 import type { Gif } from "../types/types";
 import { PUBLIC_GIPHY_APIKEY } from "./env";
@@ -26,6 +31,7 @@ export const fetchSearchMoreGif = async (
       title: gif.title,
     };
   });
+  SearchGifLimit.set(gifs.pagination.total_count);
   GifHouseStore.update((oldState: Gif[]) => [...oldState, ...gifsToStore]);
 };
 export const trendingGifs = async () => {
@@ -47,5 +53,7 @@ export const fetchTrendingMoreGif = async (offset: number) => {
       title: gif.title,
     };
   });
+  TrendingGifLimit.set(gifs.pagination.total_count);
+
   TrendingGifsStore.update((oldState: Gif[]) => [...oldState, ...gifsToStore]);
 };

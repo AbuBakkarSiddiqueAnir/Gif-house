@@ -8,6 +8,7 @@
   export let count: number;
   export let fetchSearchGif: Function;
   export let page: string;
+  export let hasMore: boolean;
 </script>
 
 <div
@@ -25,7 +26,7 @@
 
     {#if page === "home" || page === "trending"}
       <InfiniteScroll
-        hasMore={true}
+        {hasMore}
         threshold={100}
         on:loadMore={() => fetchSearchGif(count)}
       />

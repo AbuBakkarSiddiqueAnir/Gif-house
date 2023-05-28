@@ -1,6 +1,10 @@
 <script lang="ts">
   import { fetchTrendingMoreGif, trendingGifs } from "../../utils/request";
-  import { TrendingGifsStore, TrendingPageGifOffset } from "../../gifstore";
+  import {
+    TrendingGifLimit,
+    TrendingGifsStore,
+    TrendingPageGifOffset,
+  } from "../../gifstore";
   import GifGrid from "../../components/GifGrid.svelte";
 
   const paginateScroll = (count: number) => {
@@ -14,7 +18,7 @@
   <div class=" flex gap-3 flex-col">
     <header class="w-full flex justify-between items-center my-8">
       <h1
-        class="text-5xl whitespace-nowrap logo font-bold"
+        class="md:text-5xl text-3xl whitespace-nowrap logo font-bold"
         style="background-image: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
       >
         TRENDING GIFS
@@ -23,6 +27,7 @@
     <div class="w-full">
       <GifGrid
         count={$TrendingPageGifOffset}
+        hasMore={$TrendingGifLimit > $TrendingPageGifOffset}
         loading={false}
         fetchSearchGif={paginateScroll}
         page="trending"
