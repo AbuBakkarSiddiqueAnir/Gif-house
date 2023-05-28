@@ -2,10 +2,10 @@
   import type { Gif } from "./../types/types";
   import type { GifObject } from "./../types/interface";
   import { onMount } from "svelte";
-  import Footer from "../components/Footer.svelte";
   import Navbar from "../components/Navbar.svelte";
   import { trendingGifs } from "../utils/request";
   import { TrendingGifsStore } from "../gifstore";
+
   onMount(async () => {
     const trendings = await trendingGifs();
     const gifsToStore = trendings.data.map((gif: GifObject) => {
@@ -24,7 +24,6 @@
   <main class=" max-w-7xl mx-auto">
     <slot />
   </main>
-  <!-- <Footer/> -->
 </div>
 
 <style>

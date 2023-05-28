@@ -22,6 +22,5 @@
     <div class='w-full'>
         <GifGrid count={$TrendingPageGifOffset} loading={false}  fetchSearchGif={paginateScroll}  page='trending' gifs={$TrendingGifsStore} />
     </div>
-
 </div>
 </section>

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { scale } from 'svelte/transition';
+  import { scale } from 'svelte/transition';
   import { FavoritesStore } from '../gifstore';
 
-    export let noOfFavorites = 0;
+  export let noOfFavorites = 0;
 </script>
 
 <nav class="flex w-full items-center justify-end bg-gray-800 py-8 px-12">
@@ -14,7 +14,6 @@
             <span in:scale>{$FavoritesStore ? $FavoritesStore?.length : 0}</span>
           {/key}
         </div>
-
       </a>
       <a href="/trendings" class="text-gray-300 text-sm leading-3 hover:text-white" >TRENDINGS</a>
     </div>

@@ -1,15 +1,16 @@
 import { GifHouseStore, TrendingGifsStore } from "../gifstore";
 import type { GifObject } from "../types/interface";
 import type { Gif } from "../types/types";
-import {apiKey} from "./data";
+import { PUBLIC_GIPHY_APIKEY } from '$env/static/public';
+
 
 export const searchGif = async (searchTerm:string) => {
-	const res = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&limit=16`);
+	const res = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${PUBLIC_GIPHY_APIKEY}&q=${searchTerm}&limit=16`);
     return await res.json();
 };
 
 export const fetchSearchMoreGif = async (searchTerm:string = 'man', offset?:number ) => {
-	const res = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchTerm}&offset=${offset}&limit=16`);
+	const res = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${PUBLIC_GIPHY_APIKEY}&q=${searchTerm}&offset=${offset}&limit=16`);
     const gifs = await res.json();
     const gifsToStore = gifs.data.map((gif : GifObject) => {
         return {
@@ -21,12 +22,12 @@ export const fetchSearchMoreGif = async (searchTerm:string = 'man', offset?:numb
    GifHouseStore.update((oldState:Gif[])=>[...oldState, ...gifsToStore]);
 };
 export const trendingGifs = async () => {
-	const res = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=16`);
+	const res = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${PUBLIC_GIPHY_APIKEY}&limit=16`);
     return await res.json();
 };
 
 export const fetchTrendingMoreGif = async (offset:number) => {
-	const res = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&offset=${offset}&limit=16`);
+	const res = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${PUBLIC_GIPHY_APIKEY}&offset=${offset}&limit=16`);
     const gifs = await res.json();
     const gifsToStore = gifs.data.map((gif : GifObject) => {
         return {

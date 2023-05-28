@@ -28,21 +28,18 @@
         on:loadMore={() => fetchSearchGif(count)}
      />
     {/if}
-
-
   {/if}
 </div>
 
 
 <style>
 
-/* Hide the scrollbar for webkit-based browsers (e.g., Chrome, Safari) */
+
 #gif-container::-webkit-scrollbar {
   width: 0;
   background: transparent;
 }
 
-/* Optional: Hide the scrollbar for Firefox */
 #gif-container {
   scrollbar-width: none;
 }

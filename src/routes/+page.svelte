@@ -3,7 +3,6 @@
   import { onMount } from 'svelte';
 import GifGrid from '../components/GifGrid.svelte';
 import Header from '../components/Header.svelte';
-
 import {
   GifHouseStore,
 } from '../gifstore';
@@ -11,8 +10,6 @@ import {
   import { fetchSearchMoreGif } from '../utils/request.js';
 
   $: searchTerm = '';
-
-
   $: loading = false;
 
   const paginateScroll = (count:number) =>{

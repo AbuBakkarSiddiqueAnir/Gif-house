@@ -1,9 +1,7 @@
 <script lang="ts">
-
     import { FavoritesStore } from '../../gifstore';
     import GifGrid from '../../components/GifGrid.svelte';
-
-  </script>
+</script>
 
   <section class='w-full'>
   <div class=' flex gap-3 flex-col'>

@@ -6,9 +6,6 @@
   export let loading:boolean;
   export let searchTerm:string;
 
-
-
-
     let isInputFocused = false;
 
     const handleFocus = () => {
@@ -64,9 +61,7 @@
       <button on:click={gifSearchHandler} class="search absolute right-1 top-1">
         <img class="w-[40px]" src="/search.svg" alt="">
       </button>
-
       </div>
-
     </div>
   </div>
   <style>
