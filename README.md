@@ -26,7 +26,3 @@ The "Trending" page, accessible through a different route within the app, showca
 ### Favoriting Gifs
 
 Users can favorite gifs by clicking on a button associated with each gif. The site stores the set of favorited gifs in the browser's LocalStorage.
-
-### Favourites Page
-
-The "Favourites" page, accessed through a different route, displays the gifs that the user has favorited.
