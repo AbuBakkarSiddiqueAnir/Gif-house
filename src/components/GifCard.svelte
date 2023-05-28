@@ -46,11 +46,11 @@
     on:click={toggleFavorite}
     class="absolute top-2 right-2 bg-red-600 font-bold text-white px-4 py-2 rounded-full shadow-lg transform translate-x-[150%] transition-transform duration-300 ease group-hover:translate-x-[0]"
   >
-    {#if favorite}
-      Added
+    {#if !favorite}
+      Add to favorites
     {:else}
-      Add
-    {/if} to favorites
+      remove From favorites
+    {/if}
   </button>
   <div
     class=" absolute bottom-0 text-white w-full px-4 py-2 bg-gradient-to-t from-transparent to-black group-hover:translate-x-[0%] bg-opacity-50 text-shadow-md transform translate-x-[-150%] transition-transform duration-300 ease"
